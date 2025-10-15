@@ -3,10 +3,12 @@ package projeto.backend.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import projeto.backend.enums.PerfilEnum;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@MappedSuperclass
 public abstract class Pessoa {
 
     @Id
@@ -37,6 +40,6 @@ public abstract class Pessoa {
     protected PerfilEnum perfilEnum;
 
     @NotNull
-    protected Date dataCriacao;
+    protected LocalDate dataCriacao;
 
 }

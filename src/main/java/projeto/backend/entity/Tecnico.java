@@ -1,4 +1,7 @@
 package projeto.backend.entity;
 
-public class Tecnico {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Tecnico extends Pessoa{
 }

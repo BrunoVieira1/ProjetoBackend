@@ -1,4 +1,7 @@
 package projeto.backend.entity;
 
-public class Cliente {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Cliente extends Pessoa {
 }
