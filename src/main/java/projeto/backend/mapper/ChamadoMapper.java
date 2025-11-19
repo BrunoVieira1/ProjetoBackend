@@ -9,17 +9,27 @@ import projeto.backend.entity.Cliente;
 import projeto.backend.entity.Tecnico;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface ChamadoMapper {
 
 
-    @Mapping(target = "dataAbertura", expression = "java(java.time.LocalDate.now())")
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "dataFechamento", ignore = true)
-    Chamado toEntity(ChamadoRequestDto dto, Cliente cliente, Tecnico tecnico);
+    @Mapping(target = "tecnico", source = "tecnicoEntidade")
+    @Mapping(target = "cliente", source = "clienteEntidade")
+    @Mapping(target = "dataAbertura", expression = "java(java.time.LocalDate.now())")
+    Chamado toEntity(ChamadoRequestDto dto, Cliente clienteEntidade, Tecnico tecnicoEntidade);
 
-    ChamadoResponseDto toResponseDto(Chamado chamado);
 
-    List<ChamadoResponseDto> toResponseDtoList(List<Chamado> chamados);
+
+    default ChamadoResponseDto toResponseDto(Chamado chamado) {
+        return new ChamadoResponseDto(chamado);
+    }
+
+    default List<ChamadoResponseDto> toResponseDtoList(List<Chamado> chamados) {
+        return chamados.stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
+    }
 }

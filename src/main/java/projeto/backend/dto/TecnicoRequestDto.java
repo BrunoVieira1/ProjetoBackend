@@ -14,7 +14,7 @@ public class TecnicoRequestDto {
     private final String nome;
 
     @NotNull(message = "O campo CPF é obrigatório!")
-    private final Integer cpf;
+    private final String cpf;
 
     @Email
     @NotBlank(message = "O campo EMAIL é obrigatório!")
@@ -23,7 +23,7 @@ public class TecnicoRequestDto {
     @NotBlank(message = "O campo SENHA é obrigatório!")
     private final String senha;
 
-    public TecnicoRequestDto(String nome, Integer cpf, String email, String senha) {
+    public TecnicoRequestDto(String nome, String cpf, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;

@@ -10,17 +10,21 @@ public class ChamadoResponseDto {
     private final Integer id;
     private final String titulo;
     private final String observacoes;
-
     private final LocalDate dataAbertura;
-
     private final LocalDate dataFechamento;
 
     private final Integer prioridadeCod;
     private final String prioridadeDesc;
-
     private final Integer statusCod;
     private final String statusDesc;
 
+
+    private final Integer tecnico;
+    private final String nomeTecnico;
+
+
+    private final Integer cliente;
+    private final String nomeCliente;
 
     public ChamadoResponseDto(Chamado chamado) {
         this.id = chamado.getId();
@@ -28,9 +32,17 @@ public class ChamadoResponseDto {
         this.observacoes = chamado.getObservacoes();
         this.dataAbertura = chamado.getDataAbertura();
         this.dataFechamento = chamado.getDataFechamento();
+
         this.prioridadeCod = chamado.getPrioridade().getCodigo();
         this.prioridadeDesc = chamado.getPrioridade().getDescricao();
+
         this.statusCod = chamado.getStatus().getCodigo();
         this.statusDesc = chamado.getStatus().getDescricao();
+
+        this.tecnico = chamado.getTecnico().getId();
+        this.nomeTecnico = chamado.getTecnico().getNome();
+
+        this.cliente = chamado.getCliente().getId();
+        this.nomeCliente = chamado.getCliente().getNome();
     }
 }

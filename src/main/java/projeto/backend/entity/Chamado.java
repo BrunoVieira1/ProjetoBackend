@@ -13,23 +13,23 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(of = "id")
 public class Chamado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private LocalDate dataAbertura = LocalDate.now();
 
     private LocalDate dataFechamento;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private PrioridadeEnum prioridade;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
     @NotNull
@@ -37,5 +37,13 @@ public class Chamado {
 
     @NotNull
     private String observacoes;
+
+    @ManyToOne
+    @JoinColumn(name = "tecnico_id")
+    private Tecnico tecnico;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }
